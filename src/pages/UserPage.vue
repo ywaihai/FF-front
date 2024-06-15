@@ -18,7 +18,6 @@
 
 import { useRouter } from "vue-router";
 import { onMounted, ref } from "vue";
-// import { showFailToast, showSuccessToast } from "vant";
 import { getCurrentUser } from "../services/user";
 
 const user = ref();

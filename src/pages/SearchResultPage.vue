@@ -1,5 +1,5 @@
 <template>
-  <user-card-list :user-list="userList" />
+  <user-card-list :user-list="userList" :loading="loading"/>
   <van-empty v-if="!userList || userList.length < 1" description="搜索结果为空" />
 </template>
 
@@ -16,10 +16,11 @@ import qs from 'qs';
 const route = useRoute();
 const { tags } = route.query;
 const userList = ref([]);
-
+const loading = ref(false);
 
 
 onMounted(async () => {
+  loading.value = true;
   // 为给定 ID 的 user 创建请求
   const userListData = await myAxios.get('/user/search/tags', {
     withCredentials: false,
@@ -51,6 +52,7 @@ onMounted(async () => {
     })
     userList.value = userListData;
   }
+  loading.value = false;
 })
 
 
