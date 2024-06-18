@@ -69,6 +69,7 @@ onMounted(async () => {
     });
     if (res?.code === 0) {
         addTeamData.value = res.data;
+
     } else {
         showFailToast("队伍加载失败，请刷新重试");
     }

@@ -3,7 +3,7 @@
     <el-scrollbar height="400px" style="border:1px solid #1813131f">
         <div v-for="item in list" :key="item" class="scrollbar-demo-item" :style="{ justifyContent: item.type === 'left' ? 'flex-start' : 'flex-end' }">
             <div class="message-container" :class="{ 'self': item.type === 'right' }">
-                <img :src="item.avatarUrl" class="avatar" v-if="item.type === 'left'">
+                <img :src="item.avatarUrl" class="avatar" >
                 <div class="message-content">
                     <div class="username">{{ item.name }}</div>
                     <div class="message-text">{{ item.content }}</div>
@@ -11,8 +11,12 @@
             </div>
         </div>
     </el-scrollbar>
-    发送消息：<el-input v-model="msg"></el-input>
-    <el-button @click="sendMessage">发送消息</el-button>
+      发送消息：<el-input v-model="msg">
+      <template #append>
+        <el-button @click="sendMessage">发送</el-button>
+      </template>
+    </el-input>
+
 </template>
 
 <script setup>
@@ -46,7 +50,7 @@ const sendMessage = () => {
     if (name.value === "") {
         ElMessage.warning("未登录，无法发送消息");
     } else {
-        ElMessage.success("发送消息：" + msg.value);
+        // ElMessage.success("发送消息：" + msg.value);
         const newMessage = {
             name: name.value,
             content: msg.value,
@@ -55,16 +59,18 @@ const sendMessage = () => {
         };
         socket.send(JSON.stringify(newMessage));
         list.push(newMessage);
+        msg.value = ""; // 清空输入框
         console.log(list);
     }
 };
 
 const websocketOnMessage = (res) => {
     if (res.data) {
-        ElMessage.success("接收到消息：" + res.data.content);
+        console.log(res.data)
+        // ElMessage.success("接收到消息：" + res.data.content);
         const message = {
             name: JSON.parse(res.data).name,
-            content: res.data.content,
+            content: JSON.parse(res.data).content,
             type: 'left',
             avatarUrl: JSON.parse(res.data).avatarUrl
         };

@@ -1,7 +1,7 @@
 <template>
   <div id="teamCardList">
     <van-card v-for="team in props.teamList"
-      thumb="https://cn.bing.com/images/search?view=detailV2&ccid=v3ywLkq%2f&id=D89204E4B84C3538E42281C942CDE6AAE41008BD&thid=OIP.v3ywLkq_yuiisLQpDZ9wagHaGk&mediaurl=https%3a%2f%2fpic2.zhimg.com%2fv2-02f9c90b9f573e814ce413d8446098b5_r.jpg&exph=958&expw=1080&q=ikun&simid=608006111018950374&FORM=IRPRST&ck=6A255D91B3340A2CE8078891AB8B9AF2&selectedIndex=5&itb=0"
+      thumb="https://s21.ax1x.com/2024/06/17/pkwjwuj.jpg"
       :desc="team.description" :title="`${team.name}`">
       <template #tags>
         <van-tag plain type="danger" style="margin-right: 8px; margin-top: 8px">
@@ -60,6 +60,7 @@ const showPasswordDialog = ref(false);
 const password = ref('');
 const joinTeamId = ref(0);
 
+
 const props = withDefaults(defineProps<TeamCardListProps>(), {
   //@ts-ignore
   teamList: [] as TeamType[]
@@ -88,6 +89,8 @@ const doJoinCancel = () => {
   password.value = '';
 }
 
+
+
 //加入队伍
 const doJoinTeam = async () => {
   if (!joinTeamId) {
@@ -100,6 +103,7 @@ const doJoinTeam = async () => {
   if (res?.code === 0) {
     showSuccessToast("加入队伍成功");
     doJoinCancel();
+    location.reload()
   } else {
     showFailToast('加入失败' + (res.description ? `，${res.description}` : ''))
   }
@@ -126,6 +130,7 @@ const doQuitTeam = async (id: number) => {
   });
   if (res?.code === 0) {
     showSuccessToast('操作成功');
+    location.reload()
   } else {
     showFailToast('操作失败' + (res.description ? `，${res.description}` : ''));
   }
@@ -140,6 +145,7 @@ const doDeleteTeam = async (id: number) => {
   });
   if (res?.code === 0) {
     showSuccessToast('操作成功');
+    location.reload()
   } else {
     showFailToast('操作失败' + (res.description ? `，${res.description}` : ''));
   }

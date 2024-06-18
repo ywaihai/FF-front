@@ -49,10 +49,40 @@ const originTagList = [{
     children: [
       {text: '大一', id: '大一'},
       {text: '大二', id: '大二'},
-      {text: '大3', id: '大3'},
-      {text: '大4', id: '大4'},
-      {text: '大5', id: '大5aaaaaaa'},
-      {text: '大6', id: '大6aaaaaaa'},
+      {text: '大三', id: '大三'},
+      {text: '大四', id: '大四'},
+      {text: '毕业', id: '毕业'},
+      {text: '工作', id: '工作'},
+    ],
+  },
+  {
+    text: '学习方向',
+    children: [
+      {text: 'java', id: 'java'},
+      {text: 'python', id: 'python'},
+      {text: 'Go', id: 'Go'},
+      {text: '建模', id: '建模'},
+    ],
+  },
+  {
+    text: '爱好',
+    children: [
+      {text: '编程', id: '编程'},
+      {text: '看动漫', id: '看动漫'},
+      {text: '画画', id: '画画'},
+      {text: '歌剧', id: '歌剧'},
+      {text: '舞蹈', id: '舞蹈'},
+      {text: '赛车', id: '赛车'},
+    ],
+  },
+  {
+    text: '运动',
+    children: [
+      {text: '乒乓球', id: '乒乓球'},
+      {text: '羽毛球', id: '羽毛球'},
+      {text: '排球', id: '排球'},
+      {text: '足球', id: '足球'},
+      {text: '篮球', id: '篮球'},
     ],
   },
 ]
